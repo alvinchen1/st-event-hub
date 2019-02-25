@@ -28,6 +28,9 @@ definition(
 
 
 preferences {
+    section("Lights") {
+        input "lights", "capability.switch", title: "Lights", multiple: true, required: false
+	}
     section("Power Meters") {
         input "powers", "capability.powerMeter", title: "Power Sensor", multiple: true, required: false
     }
@@ -36,22 +39,22 @@ preferences {
     }
     section("Motion Sensors") {
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
-        }
-    section("Switches") {
+    }
+    	section("Switches") {
         input "switches", "capability.switch", title: "Switches", multiple: true, required: false
-		}
+	}
     section("Contact Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
-		}
+	}
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
-		}
+	}
 	section("Humidity Sensors") {
         input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
-		}
+	}
     section("Light Sensors") {
         input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true,  required: false
-		}
+	}
    }
 
 def installed() {
@@ -68,7 +71,8 @@ def updated() {
 }
 
 def initialize() {
-    subscribe(powers, "power", powerHandler)
+    subscribe(lights, "switch", lightHandler)
+	subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
     subscribe(switches, "switch", switchHandler)
@@ -96,6 +100,14 @@ def sendEvent(sensorId, sensorName, sensorType, value) {
     } catch (e) {
         // For some reason SmartThings treats 200 as an error response, so we need to comment this out to avoid errors. Uncomment the line below to debug errors 
         // log.error "something went wrong: $e"
+    }
+}
+
+def lightHandler(evt) {
+    if (evt.value == "on") {
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on')
+    } else if (evt.value == "off") {
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off')
     }
 }
 
