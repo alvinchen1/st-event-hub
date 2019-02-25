@@ -107,12 +107,14 @@ def lightHandler(evt) {
 
 def powerHandler(evt) {
     sendEvent('powerMeter', evt.displayName, 'power', evt.value, evt.date)
-	log.debug "sending powerMeter ${evt.displayName} power at ${evt.value} at ${evt.date}"
+	// log.debug "sending powerMeter ${evt.displayName} power at ${evt.value} at ${evt.date}"
 }
 
 def temperatureHandler(evt) {    
    log.debug "Hey got to ${evt.displayName} handler at least"
-   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value, evt.date)
+   temperature = evt.value 
+   temperature = temperature.minus(" F")
+   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
 }
 
 def motionHandler(evt) {
