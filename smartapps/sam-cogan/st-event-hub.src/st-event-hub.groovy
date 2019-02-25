@@ -47,7 +47,6 @@ preferences {
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
 	}
-	
    }
 
 def installed() {
