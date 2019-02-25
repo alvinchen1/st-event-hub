@@ -100,10 +100,10 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 def lightHandler(evt) {
     if (evt.value == "on") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on')
-		// log.debug "sending ${evt.displayName} light is on at ${evt.date}"
+		log.debug "sending ${evt.displayName} light is on at ${evt.date}"
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off')
-		// log.debug "sending ${evt.displayName} light is off at ${evt.date}"
+		log.debug "sending ${evt.displayName} light is off at ${evt.date}"
     }
 }
 
