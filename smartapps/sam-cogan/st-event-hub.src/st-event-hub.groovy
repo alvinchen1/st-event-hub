@@ -28,33 +28,26 @@ definition(
 
 
 preferences {
-    section("Lights") {
+    section("Electric") {
         input "lights", "capability.switch", title: "Lights", multiple: true, required: false
-	}
-    section("Power Meters") {
-        input "powers", "capability.powerMeter", title: "Power Sensor", multiple: true, required: false
+	    input "switches", "capability.switch", title: "Switches", multiple: true, required: false
+	    input "powers", "capability.powerMeter", title: "Power Sensor", multiple: true, required: false
     }
-    section("Temperature Sensors") {
+    section("Environment Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
-    }
-    section("Motion Sensors") {
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
-    }
-    	section("Switches") {
-        input "switches", "capability.switch", title: "Switches", multiple: true, required: false
+        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
+	    input "lightMeters", "capability.illuminanceMeasurement", title: "Illuminance Sensors", multiple: true,  required: false
 	}
-    section("Contact Sensors") {
+	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
+		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
 	}
+
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
 	}
-	section("Humidity Sensors") {
-        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
-	}
-    section("Light Sensors") {
-        input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true,  required: false
-	}
+	
    }
 
 def installed() {
@@ -72,15 +65,16 @@ def updated() {
 
 def initialize() {
     subscribe(lights, "switch", lightHandler)
-	subscribe(powers, "power", powerHandler)
+	subscribe(switches, "switch", switchHandler)
+    subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
-    subscribe(switches, "switch", switchHandler)
-    subscribe(contacts, "contact", contactHandler)
- 	subscribe(buttons, "button", buttonHandler)
- 	subscribe(humiditysensor, "humidity", humidityHandler)
+    subscribe(humiditysensor, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
-}
+	subscribe(contacts, "contact", contactHandler)
+ 	subscribe(locks, "lock", lockHandler)
+ 	subscribe(buttons, "button", buttonHandler)
+ 	}
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
     log.debug "sending ${sensorName} ${sensorType} at ${value}"
@@ -144,6 +138,16 @@ def contactHandler(evt) {
     }
     if (evt.value == 'closed') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed')
+    }
+}
+
+def lockHandler(evt) {
+    log.debug "Hey got to ${evt.displayName} handler at least"
+	if (evt.value == 'locked') {
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'lock', 'locked')
+    }
+    if (evt.value == 'unlocked') {
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'lock', 'unlocked')
     }
 }
 
