@@ -44,13 +44,13 @@ preferences {
         input "acceleration sensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		}
     section("Contact Sensors") {
-        input "contact sensors", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
+        input "contactsensors", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		}
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
 		}
 	section("Humidity Sensors") {
-        input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
+        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
 		}
     section("Light Sensors") {
         input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true,  required: false
@@ -74,9 +74,9 @@ def initialize() {
     subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
-    subscribe(contacts, "contact", contactHandler)
+    subscribe(contactsensors, "contact", contactHandler)
     subscribe(switches, "switch", switchHandler)
-	subscribe(humiditymeters, "humidity", humidityHandler)
+	subscribe(humiditysensor, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
 }
 
