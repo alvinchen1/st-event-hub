@@ -44,7 +44,7 @@ preferences {
         input "acceleration sensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		}
     section("Contact Sensors") {
-        input "contactsensors", "capability.contact", title: "Contact Sensors", multiple: true, required: false
+        input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		}
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
@@ -74,7 +74,7 @@ def initialize() {
     subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
-    subscribe(contactsensors, "contact", contactHandler)
+    subscribe(contacts, "contact", contactHandler)
     subscribe(switches, "switch", switchHandler)
 	subscribe(humiditysensor, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
@@ -119,7 +119,8 @@ def motionHandler(evt) {
 }
 
 def contactHandler(evt) {
-    if (evt.value == 'open') {
+    log.debug "Hey got to contact handler at least"
+	if (evt.value == 'open') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open')
     }
     if (evt.value == 'closed') {
