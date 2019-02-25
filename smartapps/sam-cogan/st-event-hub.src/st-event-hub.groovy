@@ -28,10 +28,10 @@ definition(
 
 
 preferences {
-    section("Power Meter") {
+    section("Power Meters") {
         input "powers", "capability.powerMeter", title: "Power Sensor", multiple: true, required: false
     }
-    section("Environment") {
+    section("Temperature Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
     }
     section("Security Sensors") {
@@ -49,11 +49,11 @@ preferences {
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
 		}
-	section("Humidity Sensor") {
+	section("Humidity Sensors") {
         input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
 		}
     section("Light Sensors") {
-        input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true
+        input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true,  required: false
 		}
 }
 
@@ -81,7 +81,7 @@ def initialize() {
 }
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
-    log.debug "sending ${sensorId} at ${value}"
+    log.debug "sending ${sensorName} at ${value}"
     def cleanedSensorId = sensorId.replace(" ", "")
     def params = [
         uri: "${appSettings.EventHubURL}",
@@ -97,7 +97,7 @@ def sendEvent(sensorId, sensorName, sensorType, value) {
         }
     } catch (e) {
         // For some reason SmartThings treats 200 as an error response, so we need to comment this out to avoid errors. Uncomment the line below to debug errors 
-        //log.error "something went wrong: $e"
+        log.error "something went wrong: $e"
     }
 }
 
