@@ -49,6 +49,9 @@ preferences {
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
     }
+	    section("Humidity Sensor") {
+        input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
+    }
 }
 
 def installed() {
@@ -70,6 +73,7 @@ def initialize() {
     subscribe(motions, "motion", motionHandler)
     subscribe(contacts, "contact", contactHandler)
     subscribe(switches, "switch", switchHandler)
+	subscribe(humidities, "relativeHumidityMeasurement", humidityHandler)
 }
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
@@ -125,5 +129,9 @@ def switchHandler(evt) {
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off')
     }
+}
+
+def humidityHandler(evt) {    
+    sendEvent(evt.displayName + 'humidity', evt.displayName, 'relativeHumidityMeasurement', evt.value)
 }
 
