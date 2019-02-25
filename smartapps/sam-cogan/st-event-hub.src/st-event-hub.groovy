@@ -81,7 +81,7 @@ def initialize() {
 }
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
-    log.debug "sending ${sensorName} at ${value}"
+    log.debug "sending ${sensorName} ${sensorType} at ${value}"
     def cleanedSensorId = sensorId.replace(" ", "")
     def params = [
         uri: "${appSettings.EventHubURL}",
