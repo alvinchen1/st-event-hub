@@ -100,10 +100,10 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 def lightHandler(evt) {
     if (evt.value == "on") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on',evt.date)
-		log.debug "sending ${evt.displayName} light is on at ${evt.date}"
+		// log.debug "sending ${evt.displayName} light is on at ${evt.date}"
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off',evt.date)
-		log.debug "sending ${evt.displayName} light is off at ${evt.date}"
+		// log.debug "sending ${evt.displayName} light is off at ${evt.date}"
     }
 }
 
@@ -124,11 +124,11 @@ def temperatureHandler(evt) {
 def motionHandler(evt) {
     if (evt.value == 'active') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'motion detected', evt.date)
-		log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
+		// log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
     }
     if (evt.value == 'inactive') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'no motion detected', evt.date)
-		log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
+		// log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
 	}
 }
 
@@ -146,11 +146,11 @@ def contactHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'open') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open', evt.date)
-		// log.debug "sending ${evt.displayName} contact open at ${evt.date}"
+		log.debug "sending ${evt.displayName} contact open at ${evt.date}"
     }
     if (evt.value == 'closed') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed', evt.date)
-		// log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
+		log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
     }
 }
 
