@@ -39,22 +39,23 @@ preferences {
         }
     section("Switches") {
         input "switches", "capability.switch", title: "Switches", multiple: true, required: false
-    }
+		}
      section("Acceleration Sensors") {
         input "acceleration sensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
-    }
+		}
     section("Contact Sensors") {
         input "contact sensors", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
-    }
+		}
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
-    }
+		}
 	section("Humidity Sensor") {
         input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
-    }
-    } section("Light Sensors") {
+		}
+    section("Light Sensors") {
         input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true
-    }
+		}
+}
 
 def installed() {
 	log.debug "Installed with settings: ${settings}"
