@@ -112,55 +112,55 @@ def powerHandler(evt) {
 
 def temperatureHandler(evt) {    
    log.debug "Hey got to ${evt.displayName} handler at least"
-   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
+   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value, evt.date)
 }
 
 def motionHandler(evt) {
     if (evt.value == 'active') {
-        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'motion detected')
+        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'motion detected', evt.date)
     }
     if (evt.value == 'inactive') {
-        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'no motion detected')
+        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'no motion detected', evt.date)
     }
 }
 
 def switchHandler(evt) {
     if (evt.value == "on") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on')
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on', evt.date)
     } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off')
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off', evt.date)
     }
 }
 
 def contactHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'open') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open')
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open', evt.date)
     }
     if (evt.value == 'closed') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed')
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed', evt.date)
     }
 }
 
 def lockHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'locked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked', evt.date)
     }
     if (evt.value == 'unlocked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked', evt.date)
     }
 }
 
 def buttonHandler(evt) {
      log.debug "Hey got to ${evt.displayName} handler at least"
-	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
+	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value, evt.date)
 }
 
 def humidityHandler(evt) {
-    sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value)
+    sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value, evt.date)
 }
 
 def illuminanceHandler(evt) {
-    sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value)
+    sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value, evt.date)
 }
