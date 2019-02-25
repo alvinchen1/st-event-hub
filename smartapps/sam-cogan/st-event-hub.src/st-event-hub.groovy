@@ -104,7 +104,8 @@ def powerHandler(evt) {
 }
 
 def temperatureHandler(evt) {    
-    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
+   log.debug "Hey got to ${evt.displayName} handler at least"
+   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
 }
 
 def motionHandler(evt) {
@@ -125,7 +126,7 @@ def switchHandler(evt) {
 }
 
 def contactHandler(evt) {
-    log.debug "Hey got to contact handler at least"
+    log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'open') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open')
     }
@@ -135,7 +136,8 @@ def contactHandler(evt) {
 }
 
 def buttonHandler(evt) {
-    sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
+     log.debug "Hey got to ${evt.displayName} handler at least"
+	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
 }
 
 def humidityHandler(evt) {
