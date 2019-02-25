@@ -160,26 +160,26 @@ def lockHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'locked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked', evt.date)
-		log.debug "sending ${evt.displayName} lock locked at ${evt.date}"
+		// log.debug "sending ${evt.displayName} lock locked at ${evt.date}"
     }
     if (evt.value == 'unlocked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked', evt.date)
-    	log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
+    	// log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
     }
 }
 
 def buttonHandler(evt) {
      // log.debug "Hey got to ${evt.displayName} handler at least"
 	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value, evt.date)
-	 // log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
+	 log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
 }
 
 def humidityHandler(evt) {
     sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value, evt.date)
-	// log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
+	log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
 }
 
 def illuminanceHandler(evt) {
     sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value, evt.date)
-	// log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
+	log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
 }
