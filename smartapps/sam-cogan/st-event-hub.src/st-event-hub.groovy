@@ -99,10 +99,10 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 
 def lightHandler(evt) {
     if (evt.value == "on") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on')
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on',evt.date)
 		log.debug "sending ${evt.displayName} light is on at ${evt.date}"
     } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off')
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off',evt.date)
 		log.debug "sending ${evt.displayName} light is off at ${evt.date}"
     }
 }
@@ -116,29 +116,29 @@ def temperatureHandler(evt) {
    // log.debug "Hey got to ${evt.displayName} handler at least"
    //def temperature = evt.value 
    //def temperature = temperature.minus(" F")
-   // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
-   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
+   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
+   //sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
    log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
 }
 
 def motionHandler(evt) {
     if (evt.value == 'active') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'motion detected', evt.date)
-		// log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
+		log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
     }
     if (evt.value == 'inactive') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'no motion detected', evt.date)
-		// log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
+		log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
 	}
 }
 
 def switchHandler(evt) {
     if (evt.value == "on") {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on', evt.date)
-		// log.debug "sending ${evt.displayName} switch on at ${evt.date}"
+		log.debug "sending ${evt.displayName} switch on at ${evt.date}"
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off', evt.date)
-		// log.debug "sending ${evt.displayName} switch off at ${evt.date}"
+		log.debug "sending ${evt.displayName} switch off at ${evt.date}"
     }
 }
 
