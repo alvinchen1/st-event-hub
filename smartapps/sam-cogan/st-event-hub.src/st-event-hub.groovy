@@ -31,12 +31,12 @@ preferences {
     section("Electric") {
         input "lights", "capability.switch", title: "Lights", multiple: true, required: false
 	    input "switches", "capability.switch", title: "Switches", multiple: true, required: false
-	    input "powers", "capability.powerMeter", title: "Power Sensor", multiple: true, required: false
+	    input "powers", "capability.powerMeter", title: "Power Sensors", multiple: true, required: false
     }
     section("Environment Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
-        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
+        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensors", multiple: true, required: false
 	    input "lightMeters", "capability.illuminanceMeasurement", title: "Illuminance Sensors", multiple: true,  required: false
 	}
 	section("Security Sensors") {
@@ -144,10 +144,10 @@ def contactHandler(evt) {
 def lockHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'locked') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'lock', 'locked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked')
     }
     if (evt.value == 'unlocked') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'lock', 'unlocked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked')
     }
 }
 
