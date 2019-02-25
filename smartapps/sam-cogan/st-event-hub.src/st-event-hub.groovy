@@ -44,7 +44,7 @@ preferences {
         input "acceleration sensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		}
     section("Contact Sensors") {
-        input "contactsensors", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
+        input "contactsensors", "capability.contact", title: "Contact Sensors", multiple: true, required: false
 		}
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
