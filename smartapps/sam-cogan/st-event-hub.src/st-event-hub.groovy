@@ -114,11 +114,13 @@ def powerHandler(evt) {
 
 def temperatureHandler(evt) {    
    // log.debug "Hey got to ${evt.displayName} handler at least"
-   //def temperature = evt.value 
-   //def temperature = temperature.minus(" F")
+   // def temperature = evt.value 
+   // def temperature = temperature.minus(" F")
    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
-   //sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
-   log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
+   // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
+   // log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
+   log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
+
 }
 
 def motionHandler(evt) {
@@ -146,11 +148,11 @@ def contactHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'open') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open', evt.date)
-		log.debug "sending ${evt.displayName} contact open at ${evt.date}"
+		// log.debug "sending ${evt.displayName} contact open at ${evt.date}"
     }
     if (evt.value == 'closed') {
         sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed', evt.date)
-		log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
+		// log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
     }
 }
 
@@ -158,11 +160,11 @@ def lockHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'locked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked', evt.date)
-		// log.debug "sending ${evt.displayName} lock locked at ${evt.date}"
+		log.debug "sending ${evt.displayName} lock locked at ${evt.date}"
     }
     if (evt.value == 'unlocked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked', evt.date)
-    	// log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
+    	log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
     }
 }
 
