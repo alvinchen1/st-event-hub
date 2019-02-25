@@ -114,8 +114,8 @@ def powerHandler(evt) {
 
 def temperatureHandler(evt) {    
    // log.debug "Hey got to ${evt.displayName} handler at least"
-   String temperature = evt.value 
-   String temperature = temperature.minus(" F")
+   def temperature = evt.value 
+   def temperature = temperature.minus(" F")
    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
    // log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
 }
