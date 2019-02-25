@@ -49,7 +49,7 @@ preferences {
     section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
     }
-	    section("Humidity Sensor") {
+	section("Humidity Sensor") {
         input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
     }
 }
