@@ -170,7 +170,7 @@ def lockHandler(evt) {
 def buttonHandler(evt) {
      // log.debug "Hey got to ${evt.displayName} handler at least"
 	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value, evt.date)
-	 log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
+	 // log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
 }
 
 def humidityHandler(evt) {
