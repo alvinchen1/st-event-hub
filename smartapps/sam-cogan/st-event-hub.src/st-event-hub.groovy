@@ -52,7 +52,9 @@ preferences {
 	section("Humidity Sensor") {
         input "humidity sensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensor", multiple: true, required: false
     }
-}
+    } section("Light Sensors") {
+        input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true
+    }
 
 def installed() {
 	log.debug "Installed with settings: ${settings}"
@@ -73,7 +75,8 @@ def initialize() {
     subscribe(motions, "motion", motionHandler)
     subscribe(contacts, "contact", contactHandler)
     subscribe(switches, "switch", switchHandler)
-	subscribe(humidities, "relativeHumidityMeasurement", humidityHandler)
+	subscribe(humiditymeters, "humidity", humidityHandler)
+	subscribe(lightMeters, "illuminance", illuminanceHandler)
 }
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
@@ -131,7 +134,10 @@ def switchHandler(evt) {
     }
 }
 
-def humidityHandler(evt) {    
-    sendEvent(evt.displayName + 'humidity', evt.displayName, 'relativeHumidityMeasurement', evt.value)
+def humidityHandler(evt) {
+    sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value)
 }
 
+def illuminanceHandler(evt) {
+    sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value)
+}
