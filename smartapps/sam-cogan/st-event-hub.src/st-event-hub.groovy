@@ -120,10 +120,10 @@ def motionHandler(evt) {
 
 def contactHandler(evt) {
     if (evt.value == 'open') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'doorOpen', 'open')
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open')
     }
     if (evt.value == 'closed') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'doorOpen', 'closed')
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed')
     }
 }
 
