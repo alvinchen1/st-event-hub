@@ -136,10 +136,10 @@ def motionHandler(evt) {
 def switchHandler(evt) {
     if (evt.value == "on") {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on', evt.date)
-		log.debug "sending ${evt.displayName} switch on at ${evt.date}"
+		// log.debug "sending ${evt.displayName} switch on at ${evt.date}"
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off', evt.date)
-		log.debug "sending ${evt.displayName} switch off at ${evt.date}"
+		// log.debug "sending ${evt.displayName} switch off at ${evt.date}"
     }
 }
 
@@ -180,5 +180,5 @@ def humidityHandler(evt) {
 
 def illuminanceHandler(evt) {
     sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value, evt.date)
-	log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
+	// log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
 }
