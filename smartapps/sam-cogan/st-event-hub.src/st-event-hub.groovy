@@ -107,7 +107,7 @@ def lightHandler(evt) {
 }
 
 def powerHandler(evt) {
-    sendEvent('powerMeter', evt.displayName, 'power', evt.value, evt.date)
+    sendEvent( evt.displayName + 'powerMeter', evt.displayName, 'power', evt.value, evt.date)
 	// log.debug "sending ${evt.displayName} power at ${evt.value} at ${evt.date}"
 }
 
