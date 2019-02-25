@@ -34,14 +34,11 @@ preferences {
     section("Temperature Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
     }
-    section("Security Sensors") {
+    section("Motion Sensors") {
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
         }
     section("Switches") {
         input "switches", "capability.switch", title: "Switches", multiple: true, required: false
-		}
-     section("Acceleration Sensors") {
-        input "acceleration sensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		}
     section("Contact Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
@@ -55,7 +52,7 @@ preferences {
     section("Light Sensors") {
         input "lightMeters", "capability.illuminanceMeasurement", title: "Light Sensors", multiple: true,  required: false
 		}
-}
+   }
 
 def installed() {
 	log.debug "Installed with settings: ${settings}"
@@ -74,9 +71,10 @@ def initialize() {
     subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
-    subscribe(contacts, "contact", contactHandler)
     subscribe(switches, "switch", switchHandler)
-	subscribe(humiditysensor, "humidity", humidityHandler)
+    subscribe(contacts, "contact", contactHandler)
+ 	subscribe(buttons, "button", buttonHandler)
+ 	subscribe(humiditysensor, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
 }
 
@@ -118,6 +116,14 @@ def motionHandler(evt) {
     }
 }
 
+def switchHandler(evt) {
+    if (evt.value == "on") {
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on')
+    } else if (evt.value == "off") {
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off')
+    }
+}
+
 def contactHandler(evt) {
     log.debug "Hey got to contact handler at least"
 	if (evt.value == 'open') {
@@ -128,12 +134,8 @@ def contactHandler(evt) {
     }
 }
 
-def switchHandler(evt) {
-    if (evt.value == "on") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on')
-    } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off')
-    }
+def buttonHandler(evt) {
+    sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
 }
 
 def humidityHandler(evt) {
