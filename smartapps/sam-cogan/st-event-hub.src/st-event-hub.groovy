@@ -76,12 +76,12 @@ def initialize() {
  	subscribe(buttons, "button", buttonHandler)
  	}
 
-def sendEvent(sensorId, sensorName, sensorType, value) {
+def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
     // log.debug "sending ${sensorName} ${sensorType} at ${value}"
     def cleanedSensorId = sensorId.replace(" ", "")
     def params = [
         uri: "${appSettings.EventHubURL}",
-        body: "{ sensorId : \"${cleanedSensorId}\", sensorName : \"${sensorName}\", sensorType : \"${sensorType}\", value : \"${value}\" }",
+        body: "{ sensorId : \"${cleanedSensorId}\", sensorName : \"${sensorName}\", sensorType : \"${sensorType}\", value : \"${value}\", eventdatetime : \"${eventdatetime}\" }",
         contentType: "application/xml; charset=utf-8",
         requestContentType: "application/atom+xml;type=entry;charset=utf-8",
         headers: ["Authorization": "${appSettings.EventHubSecret}"],
