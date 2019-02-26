@@ -42,7 +42,7 @@ preferences {
 	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
-		input "presencesensors", "capability.presence", title: "Presence Sensors", multiple: true, required: false
+		input "presencesensors", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
 	}
 	    section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
@@ -115,7 +115,6 @@ def temperatureHandler(evt) {
    // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
    // log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
    log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
-
 }
 
 def motionHandler(evt) {
@@ -138,14 +137,12 @@ def contactHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', evt.value, evt.date)
 	// log.debug "sending ${evt.displayName} contact ${evt.value} at ${evt.date}"
-		
 }
 
 def lockHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
 	sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value, evt.date)
 	// log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
-    
 }
 
 def presenceHandler(evt) {
