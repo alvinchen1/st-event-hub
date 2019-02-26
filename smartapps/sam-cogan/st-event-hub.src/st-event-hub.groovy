@@ -101,10 +101,10 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 def lightHandler(evt) {
     if (evt.value == "on") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
-		// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
+		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
     } else if (evt.value == "off") {
         sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
-		// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
+		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
     }
 }
 
@@ -170,14 +170,14 @@ def lockHandler(evt) {
 }
 
 def presenceHandlerHandler(evt) {
-    // log.debug "Hey got to ${evt.displayName} handler at least"
+    log.debug "Hey got to ${evt.displayName} handler at least"
 	if (evt.value == 'present') {
         sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'present', evt.date)
-		// log.debug "sending ${evt.displayName} presence present at ${evt.date}"
+		log.debug "sending ${evt.displayName} presence present at ${evt.date}"
     }
     if (evt.value == 'not present') {
         sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'not present', evt.date)
-		// log.debug "sending ${evt.displayName} contact not present at ${evt.date}"
+		log.debug "sending ${evt.displayName} contact not present at ${evt.date}"
     }
 }
 
