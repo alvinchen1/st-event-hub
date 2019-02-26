@@ -99,7 +99,7 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 
 def lightHandler(evt) {
     sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
-		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"    
+	// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"    
 }
 
 def powerHandler(evt) {
