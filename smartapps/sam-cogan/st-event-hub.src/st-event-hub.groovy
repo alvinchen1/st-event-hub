@@ -36,12 +36,13 @@ preferences {
     section("Environment Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
-        input "humiditysensor", "capability.relativeHumidityMeasurement", title: "Humidity Sensors", multiple: true, required: false
+        input "humiditysensors", "capability.relativeHumidityMeasurement", title: "Humidity Sensors", multiple: true, required: false
 	    input "lightMeters", "capability.illuminanceMeasurement", title: "Illuminance Sensors", multiple: true,  required: false
 	}
 	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
+		input "accelerationsensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		input "presencesensors", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
 	}
 	    section("Buttons") {
@@ -68,10 +69,11 @@ def initialize() {
     subscribe(powers, "power", powerHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
-    subscribe(humiditysensor, "humidity", humidityHandler)
+    subscribe(humiditysensors, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
 	subscribe(contacts, "contact", contactHandler)
  	subscribe(locks, "lock", lockHandler)
+	subscribe(accelerationsensors, "accelerationSensor", accelerationSensorHandler)
 	subscribe(presencesensors, "presence", presenceHandler)
  	subscribe(buttons, "button", buttonHandler)
  	}
@@ -128,6 +130,16 @@ def motionHandler(evt) {
 	}
 }
 
+def humidityHandler(evt) {
+    sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value, evt.date)
+	log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
+}
+
+def illuminanceHandler(evt) {
+    sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value, evt.date)
+	// log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
+}
+
 def switchHandler(evt) {
     sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', evt.value, evt.date)
 	// log.debug "sending ${evt.displayName} switch ${evt.value} at ${evt.date}"
@@ -144,9 +156,15 @@ def lockHandler(evt) {
 	// log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
 }
 
+def accelerationSensorHandler(evt) {
+    log.debug "Hey got to ${evt.displayName} handler at least"
+	sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value, evt.date)
+	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
+}
+
 def presenceHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
-	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', evt.value, evt.date)
+	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensor', evt.value, evt.date)
 	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
 }
 
@@ -154,14 +172,4 @@ def buttonHandler(evt) {
      // log.debug "Hey got to ${evt.displayName} handler at least"
 	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value, evt.date)
 	 // log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
-}
-
-def humidityHandler(evt) {
-    sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value, evt.date)
-	log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
-}
-
-def illuminanceHandler(evt) {
-    sendEvent(evt.displayName + 'light', evt.displayName, 'lumens', evt.value, evt.date)
-	// log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
 }
