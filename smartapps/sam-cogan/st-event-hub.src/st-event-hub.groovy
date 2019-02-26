@@ -111,7 +111,7 @@ def temperatureHandler(evt) {
    // log.debug "Hey got to ${evt.displayName} handler at least"
    // def temperature = evt.value 
    // def temperature = temperature.minus(" F")
-   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', temperature, evt.date)
+   sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value, evt.date)
    // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
    // log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
    log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
@@ -134,8 +134,7 @@ def switchHandler(evt) {
 }
 
 def contactHandler(evt) {
-    // log.debug "Hey got to ${evt.displayName} handler at least"
-	sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', evt.value, evt.date)
+    sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', evt.value, evt.date)
 	// log.debug "sending ${evt.displayName} contact ${evt.value} at ${evt.date}"
 }
 
