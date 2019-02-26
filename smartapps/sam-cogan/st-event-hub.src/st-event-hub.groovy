@@ -44,8 +44,7 @@ preferences {
 		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
 		input "presencesensors", "capability.presence", title: "Presence Sensors", multiple: true, required: false
 	}
-
-    section("Buttons") {
+	    section("Buttons") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
 	}
    }
@@ -149,7 +148,7 @@ def lockHandler(evt) {
     
 }
 
-def presenceHandlerHandler(evt) {
+def presenceHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
 	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', evt.value, evt.date)
 	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
