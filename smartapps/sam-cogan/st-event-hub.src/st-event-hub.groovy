@@ -42,6 +42,7 @@ preferences {
 	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
+		input "presencesensors", "capability.presence", title: "Locks", multiple: true, required: false
 	}
 
     section("Buttons") {
@@ -72,6 +73,7 @@ def initialize() {
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
 	subscribe(contacts, "contact", contactHandler)
  	subscribe(locks, "lock", lockHandler)
+	subscribe(presencesensors, "presence", presenceHandler)
  	subscribe(buttons, "button", buttonHandler)
  	}
 
@@ -98,11 +100,11 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 
 def lightHandler(evt) {
     if (evt.value == "on") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'on',evt.date)
-		// log.debug "sending ${evt.displayName} light is on at ${evt.date}"
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
+		// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
     } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', 'off',evt.date)
-		// log.debug "sending ${evt.displayName} light is off at ${evt.date}"
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
+		// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
     }
 }
 
@@ -164,6 +166,18 @@ def lockHandler(evt) {
     if (evt.value == 'unlocked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked', evt.date)
     	// log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
+    }
+}
+
+def presenceHandlerHandler(evt) {
+    // log.debug "Hey got to ${evt.displayName} handler at least"
+	if (evt.value == 'present') {
+        sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'present', evt.date)
+		// log.debug "sending ${evt.displayName} presence present at ${evt.date}"
+    }
+    if (evt.value == 'not present') {
+        sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'not present', evt.date)
+		// log.debug "sending ${evt.displayName} contact not present at ${evt.date}"
     }
 }
 
