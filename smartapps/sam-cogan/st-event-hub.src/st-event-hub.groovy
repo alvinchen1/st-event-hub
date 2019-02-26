@@ -99,13 +99,8 @@ def sendEvent(sensorId, sensorName, sensorType, value, eventdatetime) {
 }
 
 def lightHandler(evt) {
-    if (evt.value == "on") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
-		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
-    } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
-		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"
-    }
+    sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value, evt.date)
+		log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"    
 }
 
 def powerHandler(evt) {
@@ -136,49 +131,28 @@ def motionHandler(evt) {
 }
 
 def switchHandler(evt) {
-    if (evt.value == "on") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'on', evt.date)
-		// log.debug "sending ${evt.displayName} switch on at ${evt.date}"
-    } else if (evt.value == "off") {
-        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', 'off', evt.date)
-		// log.debug "sending ${evt.displayName} switch off at ${evt.date}"
-    }
+    sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', evt.value, evt.date)
+	// log.debug "sending ${evt.displayName} switch ${evt.value} at ${evt.date}"
 }
 
 def contactHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
-	if (evt.value == 'open') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'open', evt.date)
-		// log.debug "sending ${evt.displayName} contact open at ${evt.date}"
-    }
-    if (evt.value == 'closed') {
-        sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', 'closed', evt.date)
-		// log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
-    }
+	sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', evt.value, evt.date)
+	// log.debug "sending ${evt.displayName} contact ${evt.value} at ${evt.date}"
+		
 }
 
 def lockHandler(evt) {
     // log.debug "Hey got to ${evt.displayName} handler at least"
-	if (evt.value == 'locked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked', evt.date)
-		// log.debug "sending ${evt.displayName} lock locked at ${evt.date}"
-    }
-    if (evt.value == 'unlocked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked', evt.date)
-    	// log.debug "sending ${evt.displayName} lock unlocked at ${evt.date}"
-    }
+	sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value, evt.date)
+	// log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
+    
 }
 
 def presenceHandlerHandler(evt) {
     log.debug "Hey got to ${evt.displayName} handler at least"
-	if (evt.value == 'present') {
-        sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'present', evt.date)
-		log.debug "sending ${evt.displayName} presence present at ${evt.date}"
-    }
-    if (evt.value == 'not present') {
-        sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', 'not present', evt.date)
-		log.debug "sending ${evt.displayName} contact not present at ${evt.date}"
-    }
+	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensors', evt.value, evt.date)
+	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
 }
 
 def buttonHandler(evt) {
