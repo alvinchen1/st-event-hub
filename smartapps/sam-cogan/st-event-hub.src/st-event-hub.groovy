@@ -42,7 +42,7 @@ preferences {
 	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
 		input "locks", "capability.lock", title: "Locks", multiple: true, required: false
-		input "presencesensors", "capability.presence", title: "Locks", multiple: true, required: false
+		input "presencesensors", "capability.presence", title: "Presence Sensors", multiple: true, required: false
 	}
 
     section("Buttons") {
