@@ -81,7 +81,7 @@ def initialize() {
 	subscribe(accelerationsensors, "accelerationSensor", accelerationSensorHandler)
 	subscribe(presencesensors, "presence", presenceHandler)
  	subscribe(buttons, "button", buttonHandler)
- 	subscribe(musicdevices, "musicdevices", musicdevicesHandler)
+ 	subscribe(musicdevices, "status", musicdevicesHandler)
 	}
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
