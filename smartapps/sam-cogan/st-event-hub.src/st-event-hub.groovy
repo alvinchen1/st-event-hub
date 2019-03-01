@@ -123,8 +123,8 @@ def powerHandler(evt) {
 def temperatureHandler(evt) {    
    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
    // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
-   // log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
-   log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
+   //log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
+   //log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
 }
 
 def motionHandler(evt) {
