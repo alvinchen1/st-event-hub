@@ -140,7 +140,7 @@ def motionHandler(evt) {
 
 def humidityHandler(evt) {
     sendEvent(evt.displayName + 'humidity', evt.displayName, 'humidity', evt.value)
-	log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
+	//log.debug "sending ${evt.displayName} humditiy at ${evt.value} at ${evt.date}"
 }
 
 def illuminanceHandler(evt) {
@@ -177,9 +177,9 @@ def accelerationSensorHandler(evt) {
 }
 
 def presenceHandler(evt) {
-    log.debug "got to ${evt.displayName} handler"
+    //log.debug "got to ${evt.displayName} handler"
 	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensor', evt.value)
-	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
+	//log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
 }
 
 def buttonHandler(evt) {
@@ -188,7 +188,7 @@ def buttonHandler(evt) {
 }
 
 def musicdevicesHandler(evt) {
-  	log.debug "got to ${evt.displayName} handler"
+  	// log.debug "got to ${evt.displayName} handler"
 	sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', evt.value)
 	  if (evt.value == 'playing') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'playing')
