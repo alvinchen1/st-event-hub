@@ -50,8 +50,9 @@ preferences {
 		input "accelerationsensors", "capability.accelerationSensor", title: "Acceleration Sensors", multiple: true, required: false
 		input "presencesensors", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
 	}
-	    section("Buttons") {
+	section("Misc") {
         input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
+        input "musicdevices", "capability.switch", title: "Music Devices", multiple: true, required: false
 	}
    }
 
@@ -80,7 +81,8 @@ def initialize() {
 	subscribe(accelerationsensors, "accelerationSensor", accelerationSensorHandler)
 	subscribe(presencesensors, "presence", presenceHandler)
  	subscribe(buttons, "button", buttonHandler)
- 	}
+ 	subscribe(musicdevices, "musicdevices", musicdevicesHandler)
+	}
 
 def sendEvent(sensorId, sensorName, sensorType, value) {
     // log.debug "sending ${sensorName} ${sensorType} at ${value}"
@@ -183,4 +185,21 @@ def presenceHandler(evt) {
 def buttonHandler(evt) {
   	 sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
 	 // log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
+}
+
+def musicdevicesHandler(evt) {
+  	log.debug "got to ${evt.displayName} handler"
+	sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', evt.value)
+	  if (evt.value == 'playing') {
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'playing')
+		log.debug "sending ${evt.displayName} playing at ${evt.date}"
+    }
+    if (evt.value == 'paused') {
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'stopped')
+		log.debug "sending ${evt.displayName} stopped at ${evt.date}"
+	}
+	if (evt.value == 'stopped') {
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'stopped')
+		log.debug "sending ${evt.displayName} stopped at ${evt.date}"
+	}
 }
