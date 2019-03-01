@@ -150,8 +150,9 @@ def contactHandler(evt) {
 }
 
 def lockHandler(evt) {
+    log.debug "got to ${evt.displayName} handler"
  	sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
-	// log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
+	log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
 }
 
 def accelerationSensorHandler(evt) {
