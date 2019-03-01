@@ -165,7 +165,7 @@ def lockHandler(evt) {
 def accelerationSensorHandler(evt) {
     log.debug "got to ${evt.displayName} handler"
 	sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value)
-	log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
+	log.debug "sending ${evt.displayName} accleration ${evt.value} at ${evt.date}"
 }
 
 def presenceHandler(evt) {
