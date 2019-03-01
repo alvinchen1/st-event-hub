@@ -42,6 +42,7 @@ preferences {
         input "motions", "capability.motionSensor", title: "Motion Sensors", multiple: true, required: false
         input "humiditysensors", "capability.relativeHumidityMeasurement", title: "Humidity Sensors", multiple: true, required: false
 	    input "lightMeters", "capability.illuminanceMeasurement", title: "Illuminance Sensors", multiple: true,  required: false
+		input "uvsensors", "capability.ultravioletIndex", title: "UV Sensors", multiple: true,  required: false
 	}
 	section("Security Sensors") {
         input "contacts", "capability.contactSensor", title: "Contact Sensors", multiple: true, required: false
@@ -73,6 +74,7 @@ def initialize() {
     subscribe(motions, "motion", motionHandler)
     subscribe(humiditysensors, "humidity", humidityHandler)
 	subscribe(lightMeters, "illuminance", illuminanceHandler)
+	subscribe(uvsensors, "ultravioletIndex", uvsensorHandler)
 	subscribe(contacts, "contact", contactHandler)
  	subscribe(locks, "lock", lockHandler)
 	subscribe(accelerationsensors, "accelerationSensor", accelerationSensorHandler)
@@ -104,6 +106,11 @@ def sendEvent(sensorId, sensorName, sensorType, value) {
 def lightHandler(evt) {
     sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value)
 	// log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"    
+}
+
+def switchHandler(evt) {
+    sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', evt.value)
+	// log.debug "sending ${evt.displayName} switch ${evt.value} at ${evt.date}"
 }
 
 def powerHandler(evt) {
@@ -139,9 +146,9 @@ def illuminanceHandler(evt) {
 	// log.debug "sending ${evt.displayName} lumens at ${evt.value} at ${evt.date}"
 }
 
-def switchHandler(evt) {
-    sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', evt.value)
-	// log.debug "sending ${evt.displayName} switch ${evt.value} at ${evt.date}"
+def uvsensorHandler(evt) {
+    sendEvent(evt.displayName + 'ultraviolet', evt.displayName, 'ultraviolet', evt.value)
+	// log.debug "sending ${evt.displayName} ultraviolet at ${evt.value} at ${evt.date}"
 }
 
 def contactHandler(evt) {
@@ -159,7 +166,6 @@ def lockHandler(evt) {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked')
 		log.debug "sending ${evt.displayName} unlocked at ${evt.date}"
 	}
-	
 }
 
 def accelerationSensorHandler(evt) {
