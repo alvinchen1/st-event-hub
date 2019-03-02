@@ -162,11 +162,11 @@ def lockHandler(evt) {
     log.debug "got to ${evt.displayName} handler"
  	 if (evt.value == 'locked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked')
-		log.debug "sending ${evt.displayName} locked at ${evt.date}"
+		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
     }
     if (evt.value == 'unlocked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked')
-		log.debug "sending ${evt.displayName} unlocked at ${evt.date}"
+		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
 	}
 }
 
