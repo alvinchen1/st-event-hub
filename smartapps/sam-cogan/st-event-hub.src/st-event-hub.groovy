@@ -216,14 +216,14 @@ def buttonHandler(evt) {
 def musicdevicesHandler(evt) {
   	if (evt.value == 'playing') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '1')
-		//log.debug "sending ${evt.displayName} playing at ${evt.date}"
+		log.debug "sending ${evt.displayName} playing at ${evt.date}"
     }
     if (evt.value == 'paused') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '0')
-		//log.debug "sending ${evt.displayName} stopped at ${evt.date}"
+		log.debug "sending ${evt.displayName} stopped at ${evt.date}"
 	}
 	if (evt.value == 'stopped') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '0')
-		//log.debug "sending ${evt.displayName} stopped at ${evt.date}"
+		log.debug "sending ${evt.displayName} stopped at ${evt.date}"
 	}
 }
