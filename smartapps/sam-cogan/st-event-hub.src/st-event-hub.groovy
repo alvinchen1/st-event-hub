@@ -35,7 +35,7 @@ preferences {
     section("Electric") {
         input "lights", "capability.switch", title: "Lights", multiple: true, required: false
 	    input "switches", "capability.switch", title: "Switches", multiple: true, required: false
-	    input "powers", "capability.powerMeter", title: "Power Sensors", multiple: true, required: false
+	    input "powers", "capability.powerMeter", title: "Power Meters", multiple: true, required: false
     }
     section("Environment Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
