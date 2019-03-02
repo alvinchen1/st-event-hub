@@ -106,13 +106,25 @@ def sendEvent(sensorId, sensorName, sensorType, value) {
 }
 
 def lightHandler(evt) {
-    sendEvent(evt.displayName + 'light', evt.displayName, 'light', evt.value)
-	//log.debug "sending ${evt.displayName} light is ${evt.value} at ${evt.date}"    
+    if (evt.value == 'on') {
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', '1')
+		log.debug "sending ${evt.displayName} light on at ${evt.date}"
+    }
+    if (evt.value == 'off') {
+        sendEvent(evt.displayName + 'light', evt.displayName, 'light', '0')
+		log.debug "sending ${evt.displayName} light off at ${evt.date}"
+	}
 }
 
 def switchHandler(evt) {
-    sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', evt.value)
-	//log.debug "sending ${evt.displayName} switch ${evt.value} at ${evt.date}"
+    if (evt.value == 'on') {
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', '1')
+		log.debug "sending ${evt.displayName} switch at ${evt.date}"
+    }
+    if (evt.value == 'off') {
+        sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', '0')
+		log.debug "sending ${evt.displayName} switch off at ${evt.date}"
+	}
 }
 
 def powerHandler(evt) {
@@ -127,11 +139,11 @@ def temperatureHandler(evt) {
 
 def motionHandler(evt) {
     if (evt.value == 'active') {
-        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'motion detected')
+        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', '1')
 		//log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
     }
     if (evt.value == 'inactive') {
-        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', 'no motion detected')
+        sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', '0')
 		//log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
 	}
 }
@@ -152,24 +164,36 @@ def uvsensorHandler(evt) {
 }
 
 def contactHandler(evt) {
-    sendEvent(evt.displayName + 'contact', evt.displayName, 'contactsensor', evt.value)
-	//log.debug "sending ${evt.displayName} contact ${evt.value} at ${evt.date}"
+    if (evt.value == 'open') {
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contact', '1')
+		log.debug "sending ${evt.displayName} contact opened at ${evt.date}"
+    }
+    if (evt.value == 'closed') {
+        sendEvent(evt.displayName + 'contact', evt.displayName, 'contact', '0')
+		log.debug "sending ${evt.displayName} contact closed at ${evt.date}"
+	}
 }
 
 def lockHandler(evt) {
     if (evt.value == 'locked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
-		//log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', '1')
+		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
     }
     if (evt.value == 'unlocked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
-		//log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', '0')
+		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
 	}
 }
 
 def accelerationSensorHandler(evt) {
-    sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value)
-	//log.debug "sending ${evt.displayName} acceleration ${evt.value} at ${evt.date}"
+    if (evt.value == 'active') {
+        sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', '1')
+		log.debug "sending ${evt.displayName} acceleration active at ${evt.date}"
+    }
+    if (evt.value == 'inactive') {
+        sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', '0')
+		log.debug "sending ${evt.displayName} acceleration inactive at ${evt.date}"
+	}
 }
 
 def presenceHandler(evt) {
@@ -184,15 +208,15 @@ def buttonHandler(evt) {
 
 def musicdevicesHandler(evt) {
   	if (evt.value == 'playing') {
-        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'playing')
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '1')
 		//log.debug "sending ${evt.displayName} playing at ${evt.date}"
     }
     if (evt.value == 'paused') {
-        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'stopped')
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '0')
 		//log.debug "sending ${evt.displayName} stopped at ${evt.date}"
 	}
 	if (evt.value == 'stopped') {
-        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'stopped')
+        sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', '0')
 		//log.debug "sending ${evt.displayName} stopped at ${evt.date}"
 	}
 }
