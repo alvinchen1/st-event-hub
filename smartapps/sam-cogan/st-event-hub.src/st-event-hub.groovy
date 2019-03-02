@@ -122,7 +122,7 @@ def powerHandler(evt) {
 
 def temperatureHandler(evt) {    
    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
-   // sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
+   //sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
    //log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
    //log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
 }
@@ -189,8 +189,7 @@ def buttonHandler(evt) {
 
 def musicdevicesHandler(evt) {
   	// log.debug "got to ${evt.displayName} handler"
-	sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', evt.value)
-	  if (evt.value == 'playing') {
+	if (evt.value == 'playing') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'playing')
 		log.debug "sending ${evt.displayName} playing at ${evt.date}"
     }
