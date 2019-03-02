@@ -78,7 +78,7 @@ def initialize() {
 	subscribe(uvsensors, "ultravioletIndex", uvsensorHandler)
 	subscribe(contacts, "contact", contactHandler)
  	subscribe(locks, "lock", lockHandler)
-	subscribe(accelerationsensors, "accelerationSensor", accelerationSensorHandler)
+	subscribe(accelerationsensors, "acceleration", accelerationSensorHandler)
 	subscribe(presencesensors, "presence", presenceHandler)
  	subscribe(buttons, "button", buttonHandler)
  	subscribe(musicdevices, "status", musicdevicesHandler)
@@ -173,7 +173,7 @@ def lockHandler(evt) {
 def accelerationSensorHandler(evt) {
     log.debug "got to ${evt.displayName} handler"
 	sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value)
-	log.debug "sending ${evt.displayName} accleration ${evt.value} at ${evt.date}"
+	log.debug "sending ${evt.displayName} acceleration ${evt.value} at ${evt.date}"
 }
 
 def presenceHandler(evt) {
