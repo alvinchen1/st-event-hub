@@ -122,8 +122,6 @@ def powerHandler(evt) {
 
 def temperatureHandler(evt) {    
    sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value)
-   //sendEvent(evt.displayName + 'temp', evt.displayName, 'temperature', evt.value.minus(" F") , evt.date)
-   //log.debug "sending ${evt.displayName} temp at ${temperature} at ${evt.date}"
    //log.debug "sending ${evt.displayName} temp at ${evt.value} at ${evt.date}"
 }
 
@@ -159,8 +157,7 @@ def contactHandler(evt) {
 }
 
 def lockHandler(evt) {
-    //log.debug "got to ${evt.displayName} handler"
- 	 if (evt.value == 'locked') {
+    if (evt.value == 'locked') {
         sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
 		//log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
     }
@@ -171,14 +168,12 @@ def lockHandler(evt) {
 }
 
 def accelerationSensorHandler(evt) {
-    //log.debug "got to ${evt.displayName} handler"
-	sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value)
+    sendEvent(evt.displayName + 'acceleration', evt.displayName, 'accelerationsensor', evt.value)
 	//log.debug "sending ${evt.displayName} acceleration ${evt.value} at ${evt.date}"
 }
 
 def presenceHandler(evt) {
-    //log.debug "got to ${evt.displayName} handler"
-	sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensor', evt.value)
+    sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensor', evt.value)
 	//log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
 }
 
@@ -188,8 +183,7 @@ def buttonHandler(evt) {
 }
 
 def musicdevicesHandler(evt) {
-  	//log.debug "got to ${evt.displayName} handler"
-	if (evt.value == 'playing') {
+  	if (evt.value == 'playing') {
         sendEvent(evt.displayName + 'musicdevice', evt.displayName, 'musicdevice', 'playing')
 		//log.debug "sending ${evt.displayName} playing at ${evt.date}"
     }
