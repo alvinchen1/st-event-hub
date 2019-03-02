@@ -119,7 +119,7 @@ def lightHandler(evt) {
 def switchHandler(evt) {
     if (evt.value == 'on') {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', '1')
-		log.debug "sending ${evt.displayName} switch at ${evt.date}"
+		log.debug "sending ${evt.displayName} switch on at ${evt.date}"
     }
     if (evt.value == 'off') {
         sendEvent(evt.displayName + 'switch', evt.displayName, 'switch', '0')
@@ -140,11 +140,11 @@ def temperatureHandler(evt) {
 def motionHandler(evt) {
     if (evt.value == 'active') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', '1')
-		//log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
+		log.debug "sending ${evt.displayName} motion detected at ${evt.date}"
     }
     if (evt.value == 'inactive') {
         sendEvent(evt.displayName + 'motion', evt.displayName, 'motion', '0')
-		//log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
+		log.debug "sending ${evt.displayName} no motion detected at ${evt.date}"
 	}
 }
 
@@ -197,9 +197,16 @@ def accelerationSensorHandler(evt) {
 }
 
 def presenceHandler(evt) {
-    sendEvent(evt.displayName + 'presence', evt.displayName, 'presencesensor', evt.value)
-	//log.debug "sending ${evt.displayName} presence ${evt.value} at ${evt.date}"
+    if (evt.value == 'present') {
+        sendEvent(evt.displayName + 'presence', evt.displayName, 'presence', '1')
+		log.debug "sending ${evt.displayName} presence present at ${evt.date}"
+    }
+    if (evt.value == 'not present') {
+        sendEvent(evt.displayName + 'presence', evt.displayName, 'presence', '0')
+		log.debug "sending ${evt.displayName} presence no present at ${evt.date}"
+	}
 }
+
 
 def buttonHandler(evt) {
   	sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
