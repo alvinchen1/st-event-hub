@@ -161,11 +161,11 @@ def contactHandler(evt) {
 def lockHandler(evt) {
     log.debug "got to ${evt.displayName} handler"
  	 if (evt.value == 'locked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'locked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
 		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
     }
     if (evt.value == 'unlocked') {
-        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', 'unlocked')
+        sendEvent(evt.displayName + 'lock', evt.displayName, 'lock', evt.value)
 		log.debug "sending ${evt.displayName} lock ${evt.value} at ${evt.date}"
 	}
 }
