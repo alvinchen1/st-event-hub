@@ -223,7 +223,7 @@ def presenceHandler(evt) {
 }
 
 def buttonHandler(evt) {
-  	sendEvent(evt.displayName + 'button', evt.displayName, 'button', evt.value)
+  	sendEvent(evt.displayName + 'button', evt.displayName, 'button', '1')
 	//log.debug "sending ${evt.displayName} button ${evt.value} at ${evt.date}"
 }
 
