@@ -66,7 +66,7 @@ preferences {
 		input "presencesensors", "capability.presenceSensor", title: "Presence Sensors", multiple: true, required: false
 	}
 	section("Misc") {
-        input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
+        //input "buttons", "capability.button", title: "Buttons", multiple: true, required: false
         input "musicdevices", "capability.switch", title: "Music Devices", multiple: true, required: false
 	}
    }
@@ -95,7 +95,7 @@ def initialize() {
  	subscribe(locks, "lock", lockHandler)
 	subscribe(accelerationsensors, "acceleration", accelerationSensorHandler)
 	subscribe(presencesensors, "presence", presenceHandler)
- 	subscribe(buttons, "button", buttonHandler)
+ 	//subscribe(buttons, "button", buttonHandler)
  	subscribe(musicdevices, "status", musicdevicesHandler)
 	}
 
