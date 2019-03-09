@@ -51,6 +51,7 @@ preferences {
         input "lights", "capability.switch", title: "Lights", multiple: true, required: false
 	    input "switches", "capability.switch", title: "Switches", multiple: true, required: false
 	    input "powers", "capability.powerMeter", title: "Power Meters", multiple: true, required: false
+	    input "batteries", "capability.battery", title: "Battery Powered", multiple: true, required: false
     }
     section("Environment Sensors") {
         input "temperatures", "capability.temperatureMeasurement", title: "Temperature Sensors", multiple: true, required: false
@@ -86,6 +87,7 @@ def initialize() {
     subscribe(lights, "switch", lightHandler)
 	subscribe(switches, "switch", switchHandler)
     subscribe(powers, "power", powerHandler)
+    subscribe(batteries, "battery", battreyHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
     subscribe(humiditysensors, "humidity", humidityHandler)
@@ -145,6 +147,11 @@ def switchHandler(evt) {
 def powerHandler(evt) {
     sendEvent( evt.displayName + 'powerMeter', evt.displayName, 'power', evt.value)
 	//log.debug "sending ${evt.displayName} power at ${evt.value} at ${evt.date}"
+}
+
+def batteryHandler(evt) {
+    sendEvent( evt.displayName + 'battery', evt.displayName, 'battery', evt.value)
+	log.debug "sending ${evt.displayName} battery at ${evt.value} at ${evt.date}"
 }
 
 def temperatureHandler(evt) {    
