@@ -87,7 +87,7 @@ def initialize() {
     subscribe(lights, "switch", lightHandler)
 	subscribe(switches, "switch", switchHandler)
     subscribe(powers, "power", powerHandler)
-    subscribe(batteries, "battery", battreyHandler)
+    subscribe(batteries, "battery", batteryHandler)
     subscribe(temperatures, "temperature", temperatureHandler)
     subscribe(motions, "motion", motionHandler)
     subscribe(humiditysensors, "humidity", humidityHandler)
